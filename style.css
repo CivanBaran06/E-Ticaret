@@ -1,6 +1,6 @@
 /* Genel Ayarlar */
 body {
-  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+  background: linear-gradient(180deg, #fefefe 0%, #f5f5f5 100%);
   font-family: 'Poppins', sans-serif;
   color: #333;
   margin: 0;
@@ -9,13 +9,14 @@ body {
 
 /* Navbar */
 .navbar {
-  background: linear-gradient(90deg, #0d6efd, #0b5ed7);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  background: #ff6f00; /* Trendyol turuncusu */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 .navbar-brand {
-  font-weight: 600;
-  font-size: 1.4rem;
+  font-weight: 700;
+  font-size: 1.5rem;
   letter-spacing: 1px;
+  color: #fff;
 }
 .nav-link {
   color: #fff !important;
@@ -23,12 +24,12 @@ body {
   transition: 0.3s;
 }
 .nav-link:hover {
-  color: #ffdd57 !important;
+  color: #ffe082 !important;
 }
 
 /* Başlık */
 h2 {
-  font-weight: 600;
+  font-weight: 700;
   color: #222;
   margin-bottom: 20px;
 }
@@ -37,47 +38,53 @@ h2 {
 .card {
   background: #fff;
   border: none;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
   transition: transform 0.3s, box-shadow 0.3s;
   text-align: center;
+  overflow: hidden;
 }
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 .card h5 {
   font-weight: 600;
   margin-bottom: 10px;
+  font-size: 1.1rem;
 }
 .card p {
-  color: #0d6efd;
+  color: #ff6f00;
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
 }
 .card button {
   border-radius: 30px;
-  font-weight: 500;
-  padding: 8px 20px;
+  font-weight: 600;
+  padding: 10px 25px;
   transition: 0.3s;
+  background-color: #ff6f00;
+  border: none;
+  color: #fff;
 }
 .card button:hover {
-  background-color: #198754 !important;
+  background-color: #ffa000;
+  transform: scale(1.05);
 }
 
 /* Modal Tasarımları */
 .modal-content {
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  border-radius: 20px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.2);
 }
 .modal-header {
   border-bottom: none;
-  background: linear-gradient(90deg, #0d6efd, #0b5ed7);
+  background: #ff6f00;
   color: #fff;
-  border-radius: 15px 15px 0 0;
+  border-radius: 20px 20px 0 0;
 }
 .modal-title {
-  font-weight: 600;
+  font-weight: 700;
 }
 .modal-footer {
   border-top: none;
@@ -85,44 +92,82 @@ h2 {
 
 /* Sepet Listesi */
 .list-group-item {
-  border-radius: 10px !important;
+  border-radius: 15px !important;
   margin-bottom: 5px;
   border: 1px solid #e0e0e0;
 }
 .list-group-item button {
-  border-radius: 20px;
-  padding: 2px 12px;
+  border-radius: 25px;
+  padding: 4px 14px;
 }
 
 /* Formlar */
 input.form-control {
-  border-radius: 12px;
-  padding: 10px;
+  border-radius: 15px;
+  padding: 12px;
   border: 1px solid #ccc;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 input.form-control:focus {
-  border-color: #0d6efd;
-  box-shadow: 0 0 5px rgba(13,110,253,0.5);
+  border-color: #ff6f00;
+  box-shadow: 0 0 8px rgba(255,111,0,0.5);
 }
 
 /* Butonlar */
 .btn {
-  border-radius: 25px;
-  font-weight: 500;
+  border-radius: 30px;
+  font-weight: 600;
   transition: transform 0.2s;
 }
 .btn:hover {
   transform: scale(1.05);
 }
 
-/* Footer (istersen ekleriz) */
+/* Footer */
 footer {
   text-align: center;
-  padding: 20px;
-  background: #0d6efd;
+  padding: 25px;
+  background: #ff6f00;
   color: #fff;
   margin-top: 40px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+/* 🔥 Bildirim Kutusu (Toast) */
+/* Custom Toast - Ortada, büyük ve yuvarlak */
+.custom-toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #d4edda, #c3e6cb); /* yeşil tonları */
+  color: #155724;
+  padding: 25px 40px; /* büyük ve ferah */
+  border-radius: 30px; /* yuvarlak */
+  box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  z-index: 9999;
+  min-width: 320px;
+  max-width: 480px;
+  font-weight: 600;
+  font-size: 1.25rem; /* daha okunaklı */
+  animation: fadeInOut 0.3s ease;
+}
+
+.custom-toast .close-btn {
+  background: transparent;
+  border: none;
+  color: #155724;
+  font-size: 28px; /* büyük X */
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@keyframes fadeInOut {
+  from { opacity: 0; transform: translate(-50%, -60%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
 }

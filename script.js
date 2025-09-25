@@ -35,12 +35,31 @@ function displayProducts(){
   });
 }
 
+// --- Toast mesaj fonksiyonu ---
+function showToast(message){
+  const toast = document.createElement("div");
+  toast.className = "custom-toast";
+  toast.innerHTML = `
+    <span>${message}</span>
+    <button class="close-btn">&times;</button>
+  `;
+  document.body.appendChild(toast);
+
+  // X butonuna tıklama
+  toast.querySelector(".close-btn").onclick = () => toast.remove();
+
+  // 3 saniye sonra otomatik kaybolsun
+  setTimeout(() => {
+    if (document.body.contains(toast)) toast.remove();
+  }, 3000);
+}
+
 // --- Sepet işlemleri ---
 function addToCart(id){
   const product = products.find(p=>p.id===id);
   cart.push(product);
   updateCart();
-  alert(product.name + " sepete eklendi!");
+  showToast(`"${product.name}" sepete eklendi!`);
 }
 function updateCart(){
   document.getElementById("cartCount").textContent = cart.length;
@@ -86,6 +105,7 @@ function validateInput(input, condition, msg){
   }
 }
 
+// --- Kayıt Ol ---
 document.getElementById("openRegister").onclick=()=>{
   bootstrap.Modal.getInstance(document.getElementById("loginModal")).hide();
   new bootstrap.Modal(document.getElementById("registerModal")).show();
@@ -94,22 +114,42 @@ document.getElementById("doRegister").onclick=()=>{
   const u=document.getElementById("regUser");
   const p=document.getElementById("regPass");
 
-  const validUser = validateInput(u, /^[A-Za-zÇçĞğİıÖöŞşÜü]+$/.test(u.value.trim()), "Kullanıcı adı sadece harf olmalı");
-  const validPass = validateInput(p, p.value.trim()!=="", "Şifre boş olamaz");
+  // Kullanıcı adı sadece harf ve boşluk
+  const validUser = validateInput(
+    u, 
+    /^[A-Za-zÇçĞğİıÖöŞşÜü\s]+$/.test(u.value.trim()), 
+    "Kullanıcı adı sadece harf olmalı"
+  );
+  // Şifre boş olamaz
+  const validPass = validateInput(
+    p, 
+    p.value.trim()!=="", 
+    "Şifre boş olamaz"
+  );
 
   if(validUser && validPass){
     users.push({u:u.value.trim(), p:p.value.trim()});
-    alert("Kayıt başarılı!");
+    showToast("Kayıt başarılı!");
     bootstrap.Modal.getInstance(document.getElementById("registerModal")).hide();
     new bootstrap.Modal(document.getElementById("loginModal")).show();
   }
 };
+
+// --- Giriş Yap ---
 document.getElementById("doLogin").onclick=()=>{
   const u=document.getElementById("loginUser");
   const p=document.getElementById("loginPass");
 
-  const validUser = validateInput(u, /^[A-Za-zÇçĞğİıÖöŞşÜü]+$/.test(u.value.trim()), "Kullanıcı adı sadece harf olmalı");
-  const validPass = validateInput(p, p.value.trim()!=="", "Şifre boş olamaz");
+  const validUser = validateInput(
+    u, 
+    /^[A-Za-zÇçĞğİıÖöŞşÜü\s]+$/.test(u.value.trim()), 
+    "Kullanıcı adı sadece harf olmalı"
+  );
+  const validPass = validateInput(
+    p, 
+    p.value.trim()!=="", 
+    "Şifre boş olamaz"
+  );
 
   if(!(validUser && validPass)) return;
 
@@ -118,7 +158,7 @@ document.getElementById("doLogin").onclick=()=>{
     currentUser=f; 
     u.classList.add("is-valid"); 
     p.classList.add("is-valid");
-    alert("Hoşgeldin "+u.value);
+    showToast(`Hoşgeldin ${u.value}!`);
     bootstrap.Modal.getInstance(document.getElementById("loginModal")).hide();
   } else {
     u.classList.add("is-invalid");
@@ -130,7 +170,10 @@ document.getElementById("doLogin").onclick=()=>{
 
 // --- Satın alma ---
 document.getElementById("checkoutBtn").onclick=()=>{
-  if(!currentUser){ alert("Lütfen oturum açın!"); new bootstrap.Modal(document.getElementById("loginModal")).show(); }
+  if(!currentUser){ 
+    showToast("Lütfen oturum açın!");
+    new bootstrap.Modal(document.getElementById("loginModal")).show(); 
+  }
   else new bootstrap.Modal(document.getElementById("paymentModal")).show();
 };
 
@@ -145,28 +188,23 @@ birthInput.addEventListener("input", ()=>{
 
 const cardInput = document.getElementById("cardNumber");
 cardInput.addEventListener("input", ()=>{
-  // sadece rakam, max 16
   cardInput.value = cardInput.value.replace(/\D/g,"").slice(0,16);
 });
 
-// **Kart tarihi (MM/YY) otomatik slash ekleme**
 const cardDateInput = document.getElementById("cardDate");
 cardDateInput.addEventListener("input", ()=>{
-  let v = cardDateInput.value.replace(/\D/g,"").slice(0,4); // MMYY (4 rakam)
+  let v = cardDateInput.value.replace(/\D/g,"").slice(0,4);
   if(v.length >= 3) v = v.replace(/(\d{2})(\d{1,2})/, "$1/$2");
-  else if(v.length >= 1) v = v.replace(/(\d{1,2})/, "$1");
   cardDateInput.value = v;
 });
 
 const cvvInput = document.getElementById("cardCVV");
-// CVV artık en fazla 3 hane
 cvvInput.addEventListener("input", ()=>{
   cvvInput.value = cvvInput.value.replace(/\D/g,"").slice(0,3);
 });
 
 const nameInput = document.getElementById("fullName");
 nameInput.addEventListener("input", ()=>{
-  // sadece harf ve boşluk izin ver
   nameInput.value = nameInput.value.replace(/[^A-Za-zÇçĞğİıÖöŞşÜü\s]/g,"");
 });
 
@@ -188,11 +226,18 @@ document.getElementById("completePayment").onclick=()=>{
   const validLoc = validateInput(loc, loc.value.trim()!=="", "Adres gerekli");
 
   if(!(validName && validBirth && validCard && validDate && validCvv && validLoc && accept.checked)){
-    if(!accept.checked) alert("Şartları kabul etmelisiniz");
+    if(!accept.checked) showToast("Şartları kabul etmelisiniz");
     return;
   }
 
-  alert("Ödeme başarıyla tamamlandı!");
+  showToast("Ödeme başarıyla tamamlandı!");
   cart=[]; updateCart();
   bootstrap.Modal.getInstance(document.getElementById("paymentModal")).hide();
 };
+// --- Kullanıcı adı alanlarına sadece harf ve boşluk izin ver ---
+["regUser","loginUser"].forEach(id=>{
+  const inp = document.getElementById(id);
+  inp.addEventListener("input", ()=>{
+    inp.value = inp.value.replace(/[^A-Za-zÇçĞğİıÖöŞşÜü\s]/g,"");
+  });
+});
