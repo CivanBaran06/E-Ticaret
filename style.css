@@ -1,0 +1,128 @@
+/* Genel Ayarlar */
+body {
+  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+.navbar {
+  background: linear-gradient(90deg, #0d6efd, #0b5ed7);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+}
+.nav-link {
+  color: #fff !important;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.nav-link:hover {
+  color: #ffdd57 !important;
+}
+
+/* Başlık */
+h2 {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+/* Ürün Kartları */
+.card {
+  background: #fff;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.card h5 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.card p {
+  color: #0d6efd;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+.card button {
+  border-radius: 30px;
+  font-weight: 500;
+  padding: 8px 20px;
+  transition: 0.3s;
+}
+.card button:hover {
+  background-color: #198754 !important;
+}
+
+/* Modal Tasarımları */
+.modal-content {
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+.modal-header {
+  border-bottom: none;
+  background: linear-gradient(90deg, #0d6efd, #0b5ed7);
+  color: #fff;
+  border-radius: 15px 15px 0 0;
+}
+.modal-title {
+  font-weight: 600;
+}
+.modal-footer {
+  border-top: none;
+}
+
+/* Sepet Listesi */
+.list-group-item {
+  border-radius: 10px !important;
+  margin-bottom: 5px;
+  border: 1px solid #e0e0e0;
+}
+.list-group-item button {
+  border-radius: 20px;
+  padding: 2px 12px;
+}
+
+/* Formlar */
+input.form-control {
+  border-radius: 12px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+input.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 5px rgba(13,110,253,0.5);
+}
+
+/* Butonlar */
+.btn {
+  border-radius: 25px;
+  font-weight: 500;
+  transition: transform 0.2s;
+}
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* Footer (istersen ekleriz) */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #0d6efd;
+  color: #fff;
+  margin-top: 40px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
